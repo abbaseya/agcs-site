@@ -1,0 +1,17 @@
+---
+import Page from '../../layouts/Page.astro';
+import { AGC, REPO_URL, renderDocument } from '../../lib/agc';
+
+const { Content } = await renderDocument(AGC.current, 'VALIDATE');
+---
+
+<Page title="Validate" description="How to check an AGC response with the validator.">
+  <p class="source-note">
+    Run these commands in a clone of <a href={REPO_URL}>{AGC.repo}</a>, at tag {AGC.current}:
+  </p>
+  <pre class="clone"><code>git clone --branch {AGC.current} {REPO_URL}.git
+cd agent-gate-contract</code></pre>
+  <article class="prose">
+    <Content />
+  </article>
+</Page>

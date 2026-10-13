@@ -1,0 +1,21 @@
+---
+import Page from '../layouts/Page.astro';
+import { AGC, renderDocument } from '../lib/agc';
+
+const { Content } = await renderDocument(AGC.current, 'HOME');
+---
+
+<Page title="AGC" description="An open standard for the answer a gate gives an AI agent, built to end correction loops.">
+  <section class="hero">
+    <p class="eyebrow">Open standard · Draft {AGC.current} · MIT</p>
+    <h1>Agent Gate Contract</h1>
+    <p class="lede">One JSON shape for the answer a hook, a linter, a reviewer or an auditor gives an AI agent.</p>
+    <p class="actions">
+      <a class="button primary" href="/spec/">Read the specification</a>
+      <a class="button" href="/validate/">Validate a response</a>
+    </p>
+  </section>
+  <article class="prose">
+    <Content />
+  </article>
+</Page>

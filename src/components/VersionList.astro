@@ -1,0 +1,23 @@
+---
+import { AGC } from '../lib/agc';
+
+interface Props {
+  shown: string;
+}
+
+const { shown } = Astro.props;
+const href = (tag: string) => (tag === AGC.current ? '/spec/' : `/spec/${tag}/`);
+---
+
+<nav class="versions" aria-label="Specification versions">
+  <p>Versions</p>
+  <ul>
+    {AGC.versions.map((tag) => (
+      <li>
+        <a href={href(tag)} aria-current={tag === shown ? 'page' : undefined}>
+          {tag}{tag === AGC.current && ' (current)'}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

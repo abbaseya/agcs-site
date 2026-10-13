@@ -1,0 +1,17 @@
+---
+import Page from '../../layouts/Page.astro';
+import VersionList from '../../components/VersionList.astro';
+import { AGC, REPO_URL, renderDocument } from '../../lib/agc';
+
+const { Content } = await renderDocument(AGC.current, 'SPEC');
+---
+
+<Page title="Specification" description={`The normative AGC specification, ${AGC.current}.`}>
+  <p class="source-note">
+    Rendered from <a href={`${REPO_URL}/blob/${AGC.current}/SPEC.md`}>SPEC.md at {AGC.current}</a>.
+  </p>
+  <VersionList shown={AGC.current} />
+  <article class="prose">
+    <Content />
+  </article>
+</Page>
