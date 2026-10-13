@@ -1,0 +1,24 @@
+---
+import Page from '../../layouts/Page.astro';
+import VersionList from '../../components/VersionList.astro';
+import { AGC, REPO_URL, renderDocument } from '../../lib/agc';
+
+// The current version lives at /spec/. Older versions get their own page.
+export function getStaticPaths() {
+  return AGC.versions.filter((tag) => tag !== AGC.current).map((version) => ({ params: { version } }));
+}
+
+const { version } = Astro.params;
+const { Content } = await renderDocument(version, 'SPEC');
+---
+
+<Page title={`Specification ${version}`} description={`The AGC specification as released in ${version}.`}>
+  <p class="source-note notice">
+    This is an older version, {version}. The current version is <a href="/spec/">{AGC.current}</a>.
+    Rendered from <a href={`${REPO_URL}/blob/${version}/SPEC.md`}>SPEC.md at {version}</a>.
+  </p>
+  <VersionList shown={version} />
+  <article class="prose">
+    <Content />
+  </article>
+</Page>

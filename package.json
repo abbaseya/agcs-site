@@ -1,0 +1,18 @@
+{
+  "name": "agcs-site",
+  "private": true,
+  "type": "module",
+  "packageManager": "yarn@4.18.1",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "fetch:agc": "node scripts/fetch-agc.mjs",
+    "dev": "yarn fetch:agc && astro dev",
+    "build": "yarn fetch:agc && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "7.3.4"
+  }
+}
