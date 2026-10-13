@@ -74,7 +74,9 @@ async function main() {
       // The home page drops the README's H1, because the page layout shows the title.
       const home = readmeSlice(readme, { stopAt: '## Validate' }).replace(/^# .*\n+/, '');
       await writeFile(join(dir, 'HOME.md'), home);
-      await writeFile(join(dir, 'VALIDATE.md'), readmeSlice(readme, { from: '## Validate' }));
+      // The validate page drops the section heading, because the page shows its own H1.
+      const validate = readmeSlice(readme, { from: '## Validate' }).replace(/^## Validate\n+/, '');
+      await writeFile(join(dir, 'VALIDATE.md'), validate);
     }
   }
   process.stdout.write(`Fetched AGC ${config.current} and ${config.versions.length - 1} older specs from ${config.repo}.\n`);

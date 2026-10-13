@@ -246,7 +246,8 @@ main {
   overflow-wrap: break-word;
 }
 
-.prose h1 {
+.prose h1,
+.page-title {
   font-size: clamp(1.8rem, 5vw, 2.4rem);
   line-height: 1.15;
   letter-spacing: -0.015em;
